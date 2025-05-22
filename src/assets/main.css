@@ -1,0 +1,86 @@
+/* Estilos globales */
+html, body {
+  height: 100%; /* Asegura que el body ocupe toda la altura de la ventana */
+  margin: 0; /* Elimina los márgenes por defecto */
+  padding: 0; /* Elimina los paddings por defecto */
+  overflow: hidden; /* Evita el desplazamiento en el body */
+}
+
+h1, h2 {
+  text-align: center;
+  color: #333;
+}
+
+body {
+  overflow: hidden;
+  min-height: 100%; /* Asegura que el body tenga al menos la altura de la ventana */
+  display: flex;
+  background-color: var(--background-soft-color); /* Fondo gris claro */
+  font-family: 'Inter', sans-serif;
+  color: var(--text-color);
+}
+.header {
+  display: flex;
+  justify-content: center; 
+}
+.green-button {
+  background-color: #28a745;
+  color: white;
+  cursor: pointer;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+.green-button:hover {
+  background-color: #219150;
+}
+/* Contenedor principal de la aplicación */
+#app {
+  flex: 1; /* Ocupa todo el espacio disponible */
+  display: flex;
+  flex-direction: column; /* Organiza el contenido en columnas */
+  max-width: 100%; /* Ancho máximo para el contenido */
+  max-height: 100vh; /* Altura máxima de la ventana */
+  margin: 0 auto; /* Centrar el contenido */
+  padding: 2rem;
+  background-color: var(--background-color); /* Fondo blanco */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  border-radius: 8px; /* Bordes redondeados */
+  overflow: hidden; /* Permite el desplazamiento solo dentro del contenedor */
+}
+
+/* Estilos para enlaces */
+a {
+  text-decoration: none;
+  color: var(--primary-color); /* Color primario */
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: var(--primary-hover-color); /* Color primario al pasar el mouse */
+}
+
+
+button:hover {
+  background-color: var(--primary-hover-color); /* Color primario al pasar el mouse */
+}
+
+
+/* Responsividad */
+@media (min-width: 1024px) {
+  #app {
+    padding: 3rem; /* Más padding en pantallas grandes */
+  }
+}
+
+@media (max-width: 768px) {
+  #app {
+    padding: 1rem; /* Menos padding en pantallas pequeñas */
+    border-radius: 0; /* Sin bordes redondeados en móviles */
+  }
+}

@@ -1,0 +1,90 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: white;
+  height: 100vh;
+  max-width: 1200px; /* Limitar el ancho máximo del contenedor */
+  margin: 0 auto; /* Centrar el contenedor en la pantalla */
+  width: 100%; /* Asegurar que ocupe el 100% del ancho disponible */
+  box-sizing: border-box; /* Incluir el padding en el ancho total */
+  border-radius: 12px; /* Bordes redondeados para el contenedor principal */
+  overflow: hidden; /* Evitar que el contenido se desborde de los bordes redondeados */
+}
+
+h1 {
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: #333;
+  background-color: #f8f8f8;
+  padding: 20px;
+  text-align: center;
+  border-radius: 8px; /* Bordes redondeados para el título */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+}
+
+.menu {
+  display: flex;
+  flex-wrap: wrap; /* Permitir que los elementos se ajusten en varias líneas */
+  gap: 1rem; /* Reducir el espacio entre elementos */
+  justify-content: center; /* Centrar los elementos en el contenedor */
+  width: 100%; /* Asegurar que el menú ocupe el 100% del ancho */
+}
+
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px; /* Bordes redondeados para los elementos del menú */
+  padding: 1rem;
+  width: calc(25% - 1rem); /* Ajustar el ancho para 4 elementos por fila */
+  max-width: 150px; /* Limitar el ancho máximo de cada elemento */
+  height: 150px;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-sizing: border-box; /* Incluir el padding en el ancho total */
+}
+
+.menu-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.menu-item font-awesome-icon {
+  font-size: 2rem;
+  color: #28a745;
+}
+
+.menu-item span {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #333;
+}
+
+.menu-item:hover font-awesome-icon {
+  color: #218838;
+}
+
+.menu-item:hover span {
+  color: #218838;
+}
+
+/* Estilos para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .menu-item {
+    width: calc(50% - 1rem); /* 2 elementos por fila en pantallas pequeñas */
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-item {
+    width: calc(100% - 1rem); /* 1 elemento por fila en pantallas muy pequeñas */
+  }
+}

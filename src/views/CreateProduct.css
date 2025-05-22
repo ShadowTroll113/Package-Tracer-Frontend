@@ -1,0 +1,11 @@
+.form-container {
+  width: 600px;       /* ancho fijo, cámbialo según tu diseño */
+  max-width: 100%;     /* para que no desborde en pantallas pequeñas */
+  height: 900px;      /* alto fijo */
+  padding: 20px;
+  box-sizing: border-box;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin: 0 auto;
+}

@@ -1,0 +1,82 @@
+@import 'leaflet/dist/leaflet.css';
+@import 'leaflet-control-geocoder/dist/Control.Geocoder.css';
+
+/* Contenedor general de la página */
+.page-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.branch-columns {
+  display: flex;
+  gap: 20px;
+}
+
+/* Columnas del formulario y dirección */
+.form-column, .address-column {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+/* Grupos del formulario */
+.branch-form-group {
+  margin-bottom: 15px;
+}
+
+.branch-form-group label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+  color: #333;
+}
+
+.branch-form-group input,
+.branch-form-group select {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #333;
+  background-color: white;
+}
+
+/* Botón para enviar formulario */
+button.submit-branch {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button.submit-branch:hover {
+  background-color: #218838;
+}
+
+/* Contenedor del mapa */
+.map-container {
+  height: 300px;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+
+
+
+
+
+
