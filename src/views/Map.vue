@@ -46,15 +46,15 @@ export default defineComponent({
     }
 
     const setInterval2000 = async () => {
-      await mapStore.setSimulationInterval(5000)
+      await mapStore.setSimulationInterval(1000)
     }
 
     const setInterval1000 = async () => {
-      await mapStore.setSimulationInterval(2500)
+      await mapStore.setSimulationInterval(500)
     }
 
     const setInterval500 = async () => {
-      await mapStore.setSimulationInterval(1000)
+      await mapStore.setSimulationInterval(200)
     }
 
     return {
@@ -105,7 +105,6 @@ export default defineComponent({
   background-color: #0056b3;
 }
 
-/* clases existentes */
 .green-button {
   background-color: #28a745;
   color: white;

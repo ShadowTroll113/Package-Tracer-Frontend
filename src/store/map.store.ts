@@ -155,27 +155,32 @@ export const useMapStore = defineStore('map', () => {
   /**
    * Click en camión: pinta solo primer + último punto.
    */
-  async function onTruckClick(id: string) {
-    const truckId = Number(id)
-    try {
-      const full = await ensureRouteCached(truckId)
-      // tomar solo endpoints para dibujo
-      const endpoints: LatLngExpression[] =
-        full.length >= 2 ? [full[0], full[full.length - 1]] : full
-      drawRoute(endpoints)
-    } catch (err) {
-      console.error('Error pintando ruta del camión', truckId, err)
-    }
-  }
+async function onTruckClick(id: string) {
+  const truckId = Number(id);
 
-  // — HELPERS DE MARCADORES —
+  try {
+    const dto = await routesStore.getRoute(truckId);
+    if (!dto) throw new Error(`No hay datos de ruta para camión ${truckId}`);
+    const raw: LatLngExpression[] = [
+      [dto.warehouse.latitude, dto.warehouse.longitude],
+      ...dto.stops.map((s: { latitude: number; longitude: number }) => [
+        s.latitude,
+        s.longitude,
+      ] as [number, number]),
+    ];
+    drawRoute(raw);
+  } catch (err) {
+    console.error("Error pintando ruta RAW del camión", truckId, err);
+  }
+}
+
+
 
   function updateTruckMarker(id: string, latitude: number, longitude: number) {
     if (!map.value) return
     const pos: LatLngExpression = [latitude, longitude]
     let m = markers[id]
     if (m) {
-      // animamos hacia la nueva posición
       animateMarker(m, pos, 1000)
     } else {
       m = L.marker(pos, { icon: truckIcon }).addTo(map.value)
