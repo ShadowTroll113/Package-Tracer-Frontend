@@ -61,7 +61,7 @@
         <span>Crear Producto</span>
       </router-link>
       <router-link
-        v-if="isLoggedIn"
+        v-if="adminOrStorage"
         to="/product/list"
         class="menu-item"
         title="Lista de Productos"
@@ -70,7 +70,7 @@
         <span>Lista de Productos</span>
       </router-link>
       <router-link
-        v-if="canAssignOrListRoutes"
+        v-if="adminOrStorage"
         to="/route/creation"
         class="menu-item"
         title="Crear Ruta"
@@ -90,7 +90,7 @@
 
       <!-- ALMACÉN y ADMIN -->
       <router-link
-        v-if="canAssignOrListRoutes"
+        v-if="adminOrStorage"
         to="/assign-route"
         class="menu-item"
         title="Asignar Ruta"
@@ -99,7 +99,7 @@
         <span>Asignar Ruta</span>
       </router-link>
       <router-link
-        v-if="canAssignOrListRoutes"
+        v-if="adminOrStorage"
         to="/route/list"
         class="menu-item"
         title="Lista de Rutas"
@@ -142,7 +142,7 @@ const loginStore = useLoginStore();
     const isAdmin = computed(() => usersStore.user?.role === 'Admin');
     const isAlmacen = computed(() => usersStore.user?.role === 'Almacen');
     const isLoggedIn = computed(() => !!usersStore.user);
-    const canAssignOrListRoutes = computed(
+    const adminOrStorage = computed(
       () => isAlmacen.value || isAdmin.value
     );
 
@@ -175,7 +175,7 @@ const loginStore = useLoginStore();
       isAdmin,
       isAlmacen,
       isLoggedIn,
-      canAssignOrListRoutes,
+      adminOrStorage,
       logout,
     };
   },

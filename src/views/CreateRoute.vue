@@ -183,13 +183,9 @@ async function createRoute() {
   };
 
   try {
-    const response = await routesStore.addRoute(dto);
-    if (response !== undefined) {
+    await routesStore.addRoute(dto);
       message.value = 'Ruta creada exitosamente.';
-    } else {
-      message.value = 'Error creando la ruta.';
-    }
-    setTimeout(() => router.push('/route/list'), 1000);
+    setTimeout(() => router.push('/route/list'), 500);
   } catch (error) {
     console.error('Error al crear la ruta:', error);
     message.value = 'Ocurrió un error al crear la ruta.';

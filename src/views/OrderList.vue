@@ -34,7 +34,7 @@
           <td class="actions-cell">
             <!-- Aceptar / Cancelar -->
             <button
-              v-if="order.status === 'pendiente'"
+              v-if="order.status === 'pendiente' && userStore.user?.role!='Tienda'"
               class="green-button"
               @click="acceptOrder(order)"
             >Aceptar</button>
