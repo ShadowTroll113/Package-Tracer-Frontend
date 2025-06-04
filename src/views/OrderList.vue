@@ -39,7 +39,7 @@
               @click="acceptOrder(order)"
             >Aceptar</button>
             <button
-              v-else-if="order.status !== 'cancelado'"
+              v-else-if="!(order.status == 'cancelado' || order.status == 'entregado')"
               class="red-button"
               @click="cancelOrder(order)"
             >Cancelar</button>
@@ -54,12 +54,19 @@
 
             <!-- Asignar / Reasignar Ruta (solo en almacén actual) -->
             <button
-              v-if=" branchStore.isCurrentWarehouse(order.warehouseId) || userStore.user?.branchId==-1"
+              v-if=" (branchStore.isCurrentWarehouse(order.warehouseId) || userStore.user?.branchId==-1) && order.status=='aceptado'"
               class="green-button"
               @click="goToAssignRoute(order)"
             >
               {{ order.routeId ? 'Reasignar Ruta' : 'Asignar Ruta' }}
             </button>
+
+          <button
+          v-if="order.status=='terminado' && (branchStore.isCurrentStore(order.warehouseId) || userStore.user?.branchId==-1)"
+                        class="green-button"
+              @click="markAsReceivedOrder(order)">
+            Marcar como recibido
+          </button>
           </td>
         </tr>
         <tr v-if="orders.length === 0">
@@ -154,6 +161,23 @@ const finishOrder = async (order: Order) => {
       warehouseId: order.warehouseId,
       storeId: order.storeId!,
       status: 'terminado' as OrderStatus,
+      orderDetails: order.orderDetails,
+      orderProducts: order.orderProducts.map(op => ({ productId: op.productId, quantity: op.quantity })),
+      routeId: order.routeId
+    };
+    await orderStore.updateOrder(order.id, dto);
+  } catch {
+    alert('Error al terminar el pedido.');
+  }
+};
+
+const markAsReceivedOrder = async (order: Order) => {
+  if (!order.id || !order.warehouseId) return alert('Datos incompletos.');
+  try {
+    const dto: OrderDto = {
+      warehouseId: order.warehouseId,
+      storeId: order.storeId!,
+      status: 'entregado' as OrderStatus,
       orderDetails: order.orderDetails,
       orderProducts: order.orderProducts.map(op => ({ productId: op.productId, quantity: op.quantity })),
       routeId: order.routeId
