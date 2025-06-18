@@ -29,16 +29,12 @@ npm install
 Desarrollo
 Servidor de desarrollo con hot-reload
 ```
-
-
 npm run dev
 ```
 Abre http://localhost:5173 en el navegador; los cambios se recargan automáticamente.
 
 Compilación para producción
 ```
-
-
 npm run build
 ```
 Genera los archivos optimizados en la carpeta dist/.
