@@ -1,61 +1,28 @@
-# Package-Tracer
+# SIGI Frontend
 
-This template should help get you started developing with Vue 3 in Vite.
+Interfaz web del **Sistema Integral de Gestión de Inventarios (SIGI)**, desarrollada con Vue 3 y Vite para ofrecer una experiencia ágil y reactiva en la gestión de stock, pedidos y rutas de reparto.
 
-## Recommended IDE Setup
+**Software libre**
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Características principales
 
-## Type Support for `.vue` Imports in TS
+- Componentes modulares organizados en **Views**, **Stores**, **Router**, **Interfaces** y **Assets**.  
+- **State management** con Pinia (o Vuex, según configuración) y patrón Domain-Driven Design (DDD).  
+- Navegación gestionada por **Vue Router** con rutas protegidas según roles (admin, tienda, almacén).  
+- Mapas interactivos integrados con **Leaflet** y **Leaflet Routing Machine**, usando Nominatim para geocoding y OpenRouteService para cálculo de rutas.  
+- Clustering de marcadores con `leaflet.markercluster` y actualización en tiempo real de posiciones de camiones con `leaflet.realtime`.  
+- **TypeScript** en `.vue` gracias a `vue-tsc` y Volar para autocompletado y chequeo de tipos.
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+## Requisitos
 
-## Customize configuration
+- Node.js ≥ 16  
+- npm ≥ 8 (o yarn ≥ 1.22)  
+- VSCode + extensión [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+## Instalación
 
-## Project Setup
-
-```sh
+```bash
+git clone https://github.com/ShadowTroll113/Package-Tracer-Frontend.git sigi-frontend
+cd sigi-frontend
 npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
-
-```sh
-npm run test:e2e:dev
-```
-
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
-
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
-
-```sh
-npm run build
-npm run test:e2e
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
 ```
