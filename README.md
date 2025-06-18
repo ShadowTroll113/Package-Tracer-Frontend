@@ -21,8 +21,43 @@ Interfaz web del **Sistema Integral de Gestión de Inventarios (SIGI)**, desarro
 
 ## Instalación
 
-```bash
+```
 git clone https://github.com/ShadowTroll113/Package-Tracer-Frontend.git sigi-frontend
 cd sigi-frontend
 npm install
 ```
+Desarrollo
+Servidor de desarrollo con hot-reload
+```
+
+
+npm run dev
+```
+Abre http://localhost:5173 en el navegador; los cambios se recargan automáticamente.
+
+Compilación para producción
+```
+
+
+npm run build
+```
+Genera los archivos optimizados en la carpeta dist/.
+
+Estructura del proyecto
+```
+src/
+├─ assets/         # Imágenes e iconos
+├─ components/     # Componentes reutilizables
+├─ interfaces/     # Modelos y tipos TypeScript
+├─ router/         # Definición de rutas
+├─ stores/         # State management (Pinia/Vuex)
+├─ views/          # Vistas principales
+├─ App.vue         # Componente raíz
+└─ main.ts         # Punto de entrada
+```
+Enlaces de interés
+Repositorio Frontend: https://github.com/ShadowTroll113/Package-Tracer-Frontend
+
+Repositorio Backend: https://github.com/ShadowTroll113/PackageTrackerBackend
+
+Demo en vídeo: https://drive.google.com/file/d/1p2tnTumy5I_rhqN_maW_lE1ZPPXW6_m_/view?usp=sharing
