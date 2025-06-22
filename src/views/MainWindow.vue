@@ -34,7 +34,7 @@
         <font-awesome-icon icon="clipboard-list" />
         <span>Crear Producto</span>
       </router-link>
-      <router-link v-if="adminOrStorage" to="/product/list" class="menu-item" title="Lista de Productos">
+      <router-link v-if="isLoggedIn" to="/product/list" class="menu-item" title="Lista de Productos">
         <font-awesome-icon icon="clipboard-list" />
         <span>Lista de Productos</span>
       </router-link>
