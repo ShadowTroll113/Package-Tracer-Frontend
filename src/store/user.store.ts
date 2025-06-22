@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import axios from 'axios'; // Cliente HTTP para interactuar con la API
-import { User } from '../interfaces/User';
+import type {User} from '../interfaces/User'
 
 axios.defaults.baseURL = "http://localhost:8080";
 axios.defaults.withCredentials = true; // Permitir el envío de credenciales (cookies)
@@ -93,3 +93,5 @@ export const useUsersStore = defineStore('users', () => {
     clearUser,
   };
 });
+
+export { User };

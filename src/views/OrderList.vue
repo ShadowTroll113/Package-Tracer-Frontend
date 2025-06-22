@@ -198,7 +198,7 @@ const goToAssignRoute = (order: Order) => {
 @import './OrderList.css';
 
 .order-list-container {
-  overflow: hidden;
+  overflow: auto;
 }
 
 .order-list {

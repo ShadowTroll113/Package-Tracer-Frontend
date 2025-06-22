@@ -34,11 +34,7 @@ export const useTruckStore = defineStore('trucks', () => {
   }
 
   // Crea un camión en el backend
-  const addTruck = async (truckData: {
-    name: string
-    warehouseId: number
-    routeId: number | null
-  }) => {
+  const addTruck = async (truckData: any) => {
     isLoading.value = true
     error.value = null
     try {
@@ -53,11 +49,35 @@ export const useTruckStore = defineStore('trucks', () => {
     }
   }
 
+  const updateTruck = async (id: number, data: Partial<Truck>) => {
+    isLoading.value = true
+    error.value = null
+    try {
+      const existing = trucks.value.find(t => t.id === id)
+      if (!existing) throw new Error(`Camión ${id} no encontrado`)
+      const fullTruck: Truck = {
+        ...existing,
+        ...data,
+        id
+      }
+      const payload = { id, truck: fullTruck }
+      const res = await axios.put<Truck>(`/api/trucks/${id}`, payload)
+      const idx = trucks.value.findIndex(t => t.id === id)
+      if (idx !== -1) trucks.value.splice(idx, 1, res.data)
+    } catch (e: any) {
+      console.error('Error updating truck:', e)
+      error.value = 'No se pudo actualizar el camión.'
+      throw e
+    } finally {
+      isLoading.value = false
+    }
+  }
   return {
     trucks,
     isLoading,
     error,
     fetchTrucks,
+    updateTruck,
     addTruck
   }
 })

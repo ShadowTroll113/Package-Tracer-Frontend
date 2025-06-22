@@ -19,9 +19,10 @@ import CreateRoute from "../views/CreateRoute.vue"
 import AssignRoute from "../views/AssignRoute.vue"
 import CreateTruck from "../views/CreateTruck.vue"
 import RouteList from "../views/RouteList.vue"
+import TruckList from "../views/TruckList.vue"
+import UserList from "../views/UserList.vue"
 import Map from "../views/Map.vue"
 
-// Guard que comprueba que haya un usuario logueado
 function requireAuth(
   to: RouteLocationNormalized,
   from: RouteLocationNormalized,
@@ -34,7 +35,7 @@ function requireAuth(
   return next()
 }
 
-// Crea un guard que solo deja pasar si el rol del usuario está en allowedRoles
+
 function requireRole(allowedRoles: string[], redirectPath = "/main") {
   return (
     to: RouteLocationNormalized,
@@ -44,13 +45,13 @@ function requireRole(allowedRoles: string[], redirectPath = "/main") {
     const userStore = useUsersStore()
     const user = userStore.user
     if (!user) {
-      // no está autenticado → login
+
       return next({ path: "/" })
     }
     if (allowedRoles.includes(user.role)) {
       return next()
     }
-    // autenticado pero sin rol permitido → main
+
     return next({ path: redirectPath })
   }
 }
@@ -58,10 +59,11 @@ function requireRole(allowedRoles: string[], redirectPath = "/main") {
 const routes = [
   { path: "/", component: Login },
 
-  // Rutas que requieren al menos estar autenticado
   { path: "/main", component: MainWindow, beforeEnter: requireAuth },
   { path: "/order/creation", component: CreateOrder, beforeEnter: requireAuth },
   { path: "/order/list", component: OrderList, beforeEnter: requireAuth },
+  { path: "/truck/list", component: TruckList, beforeEnter: requireAuth },
+    { path: "/user/list", component: UserList, beforeEnter: requireAuth },
   { path: "/product/creation", component: CreateProduct, beforeEnter: requireAuth },
   { path: "/product/list", component: ProductList, beforeEnter: requireAuth },
 
@@ -83,7 +85,11 @@ const routes = [
     component: CreateTruck,
     beforeEnter: requireRole(["Admin"]),
   },
-
+  {
+    path: "/user/list",
+    component: CreateTruck,
+    beforeEnter: requireRole(["Admin"]),
+  },
   // ALMACÉN y Admin
   {
     path: "/assign-route",
@@ -94,6 +100,11 @@ const routes = [
     path: "/route/list",
     component: RouteList,
     beforeEnter: requireRole(["Almacen", "Admin"]),
+  },
+    {
+    path: "/truck/list",
+    component: TruckList,
+    beforeEnter: requireRole(["Admin"]),
   },
   {
     path: "/route/creation",

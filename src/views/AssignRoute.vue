@@ -22,11 +22,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="route in routes" :key="route.id">
+            <tr v-for="route in availableRoutes" :key="route.id">
               <td>{{ route.id }}</td>
               <td>{{ route.name }}</td>
               <td>{{ route.details || '—' }}</td>
-              <td>{{ route.status || '—' }}</td>
+              <td>{{ route.status }}</td>
               <td class="actions-cell">
                 <button
                   v-if="!hasRouteAssigned"
@@ -44,14 +44,14 @@
                 </button>
               </td>
             </tr>
-            <tr v-if="routes.length === 0">
+            <tr v-if="availableRoutes.length === 0">
               <td colspan="5" class="no-products">No hay rutas disponibles.</td>
             </tr>
           </tbody>
         </table>
       </div>
       <button
-        v-if="routes.length === 0"
+        v-if="availableRoutes.length === 0"
         class="green-button"
         @click="goToRouteCreation"
       >
@@ -81,10 +81,14 @@ const router = useRouter();
 const routesStore = useRoutesStore();
 const orderStore = useOrderStore();
 
-const routes = computed(() => routesStore.routes);
 const assignedOrder = computed<Order | undefined>(() => orderStore.assignedOrder);
 const hasRouteAssigned = computed(() => !!assignedOrder.value?.routeId);
 const message = ref<string>('');
+
+// Sólo rutas cuyo estado sea "espera"
+const availableRoutes = computed(() =>
+  routesStore.routes.filter(r => r.status === 'en espera')
+);
 
 function getFullDto(routeId: number): OrderDto {
   const order = assignedOrder.value!;
@@ -103,8 +107,13 @@ function getFullDto(routeId: number): OrderDto {
 
 async function assignRouteToOrder(routeId: number) {
   try {
-    await orderStore.updateOrder(assignedOrder.value!.id!, getFullDto(routeId));
-    message.value = `Ruta #${routeId} ${hasRouteAssigned.value ? 'reasignada' : 'asignada'} al pedido #${assignedOrder.value!.id}`;
+    await orderStore.updateOrder(
+      assignedOrder.value!.id!,
+      getFullDto(routeId)
+    );
+    message.value = `Ruta #${routeId} ${
+      hasRouteAssigned.value ? 'reasignada' : 'asignada'
+    } al pedido #${assignedOrder.value!.id}`;
     setTimeout(() => router.push('/order/list'), 1500);
   } catch (e) {
     console.error(e);
@@ -112,9 +121,15 @@ async function assignRouteToOrder(routeId: number) {
   }
 }
 
-function goBack() { router.push('/main'); }
-function goToRouteCreation() { router.push('/route/creation'); }
-function goToOrderList() { router.push('/order/list'); }
+function goBack() {
+  router.push('/main');
+}
+function goToRouteCreation() {
+  router.push('/route/creation');
+}
+function goToOrderList() {
+  router.push('/order/list');
+}
 
 onMounted(() => {
   routesStore.fetchRoutes();

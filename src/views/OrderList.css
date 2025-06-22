@@ -46,7 +46,7 @@
 }
 
 .order-list-container {
-  overflow: hidden;
+  overflow: auto;
 }
 
 .order-list {

@@ -4,106 +4,59 @@
     <div v-if="isLoading" class="loading-message">Cargando datos...</div>
     <div v-else class="menu">
       <!-- SOLO ADMIN -->
-      <router-link
-        v-if="isAdmin"
-        to="/branch/creation"
-        class="menu-item"
-        title="Creación de Sucursal"
-      >
+      <router-link v-if="isAdmin" to="/branch/creation" class="menu-item" title="Creación de Sucursal">
         <font-awesome-icon icon="branch" />
         <span>Creación de Sucursal</span>
       </router-link>
-      <router-link
-        v-if="isAdmin"
-        to="/branch/list"
-        class="menu-item"
-        title="Lista de Sucursales"
-      >
+      <router-link v-if="isAdmin" to="/branch/list" class="menu-item" title="Lista de Sucursales">
         <font-awesome-icon icon="clipboard-list" />
         <span>Lista de Sucursales</span>
       </router-link>
-      <router-link
-        v-if="isAdmin"
-        to="/truck/creation"
-        class="menu-item"
-        title="Crear Camión"
-      >
+      <router-link v-if="isAdmin" to="/truck/creation" class="menu-item" title="Crear Camión">
         <font-awesome-icon icon="plus" />
         <span>Crear Camión</span>
       </router-link>
+        <router-link v-if="isAdmin" to="/user/list" class="menu-item" title="Crear Camión">
+        <font-awesome-icon icon="plus" />
+        <span>Gestor de Usuarios</span>
+      </router-link>
 
       <!-- TODOS LOS AUTENTICADOS -->
-      <router-link
-        v-if="isLoggedIn"
-        to="/order/creation"
-        class="menu-item"
-        title="Crear Pedido"
-      >
+      <router-link v-if="isLoggedIn" to="/order/creation" class="menu-item" title="Crear Pedido">
         <font-awesome-icon icon="shopping-cart" />
         <span>Crear Pedido</span>
       </router-link>
-      <router-link
-        v-if="isLoggedIn"
-        to="/order/list"
-        class="menu-item"
-        title="Lista de Pedidos"
-      >
+      <router-link v-if="isLoggedIn" to="/order/list" class="menu-item" title="Lista de Pedidos">
         <font-awesome-icon icon="clipboard-list" />
         <span>Lista de Pedidos</span>
       </router-link>
-      <router-link
-        v-if="isLoggedIn"
-        to="/product/creation"
-        class="menu-item"
-        title="Crear Producto"
-      >
+      <router-link v-if="isLoggedIn" to="/product/creation" class="menu-item" title="Crear Producto">
         <font-awesome-icon icon="clipboard-list" />
         <span>Crear Producto</span>
       </router-link>
-      <router-link
-        v-if="adminOrStorage"
-        to="/product/list"
-        class="menu-item"
-        title="Lista de Productos"
-      >
+      <router-link v-if="adminOrStorage" to="/product/list" class="menu-item" title="Lista de Productos">
         <font-awesome-icon icon="clipboard-list" />
         <span>Lista de Productos</span>
       </router-link>
-      <router-link
-        v-if="adminOrStorage"
-        to="/route/creation"
-        class="menu-item"
-        title="Crear Ruta"
-      >
+      <router-link v-if="adminOrStorage" to="/truck/list" class="menu-item" title="Lista de Camiones">
+        <font-awesome-icon icon="clipboard-list" />
+        <span>Lista de Camiones</span>
+      </router-link>
+      <router-link v-if="adminOrStorage" to="/route/creation" class="menu-item" title="Crear Ruta">
         <font-awesome-icon icon="plus" />
         <span>Crear Ruta</span>
       </router-link>
-      <router-link
-        v-if="isLoggedIn"
-        to="/map"
-        class="menu-item"
-        title="Ver Mapa"
-      >
+      <router-link v-if="isLoggedIn" to="/map" class="menu-item" title="Ver Mapa">
         <font-awesome-icon icon="route" />
         <span>Mapa</span>
       </router-link>
 
       <!-- ALMACÉN y ADMIN -->
-      <router-link
-        v-if="adminOrStorage"
-        to="/assign-route"
-        class="menu-item"
-        title="Asignar Ruta"
-      >
+      <router-link v-if="adminOrStorage" to="/assign-route" class="menu-item" title="Asignar Ruta">
         <font-awesome-icon icon="route" />
         <span>Asignar Ruta</span>
       </router-link>
-      <router-link
-        v-if="adminOrStorage"
-        to="/route/list"
-        class="menu-item"
-        title="Lista de Rutas"
-      >
+      <router-link v-if="adminOrStorage" to="/route/list" class="menu-item" title="Lista de Rutas">
         <font-awesome-icon icon="clipboard-list" />
         <span>Lista de Rutas</span>
       </router-link>
@@ -136,7 +89,7 @@ export default defineComponent({
     const productsStore = useProductStore();
     const routesStore = useRoutesStore();
     const branchStore = useBranchStore();
-const loginStore = useLoginStore();
+    const loginStore = useLoginStore();
     const isLoading = ref(true);
 
     const isAdmin = computed(() => usersStore.user?.role === 'Admin');
